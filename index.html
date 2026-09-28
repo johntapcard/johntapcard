@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Johntapcard</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:#050505;color:#f5f5f5;
+  font-family:Arial,Helvetica,sans-serif;
+  line-height:1.45;
+}
+a{color:inherit;text-decoration:none}
+.container{width:min(92%,1180px);margin:auto}
+header{
+  height:78px;border-bottom:1px solid #292929;
+  display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;z-index:20;
+  background:rgba(5,5,5,.94);backdrop-filter:blur(12px);
+}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-image{
+  width:58px;height:42px;object-fit:contain;
+}
+.brand-name{font-size:25px;font-weight:700;letter-spacing:4px}
+.brand-sub{display:block;font-size:8px;letter-spacing:2px;color:#aaa;margin-top:2px}
+nav{display:flex;align-items:center;gap:34px;font-size:13px}
+nav a:hover{color:#aaa}
+.contact-btn{border:1px solid #eee;border-radius:30px;padding:10px 17px}
+.hero{
+  min-height:500px;display:grid;grid-template-columns:1fr 1.25fr;
+  gap:45px;align-items:center;padding:60px 0;
+  border-bottom:1px solid #292929;
+}
+.eyebrow{font-size:12px;letter-spacing:3px;color:#cbd0dc;margin-bottom:7px}
+h1{font-size:54px;line-height:1.02;letter-spacing:-2px}
+.gradient{background:linear-gradient(90deg,#fff,#a9a9a9);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:#c6c6c6;margin:15px 0 24px;max-width:500px}
+.btn{display:inline-flex;align-items:center;gap:10px;border:1px solid #eee;border-radius:28px;padding:12px 20px;font-size:13px}
+.visuals{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:center}
+.card-image{
+  width:100%;aspect-ratio:1.55/1;object-fit:cover;
+  border-radius:14px;border:1px solid #777;background:#0b0b0b;
+}
+.image-note{font-size:10px;color:#777;margin-top:7px;text-align:center}
+.scribble{font-family:cursive;font-size:22px;transform:rotate(-7deg);color:#ddd;text-align:center}
+.section{padding:42px 0;border-bottom:1px solid #292929}
+.section-head{text-align:center;margin-bottom:25px}
+.section-label{font-size:11px;letter-spacing:3px;color:#bfc5d0}
+h2{font-size:31px;margin:5px 0}
+.section-head p{color:#aaa;font-size:14px}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center}
+.step{position:relative}
+.step:not(:last-child):after{content:"→";position:absolute;right:-15px;top:30px;font-size:25px;color:#aaa}
+.step-icon{
+  width:78px;height:78px;border:2px solid #777;border-radius:50%;
+  margin:0 auto 12px;display:grid;place-items:center;font-size:30px;
+}
+.num{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:#ddd;color:#111;font-size:12px;font-weight:bold;margin-bottom:8px}
+.step h3{font-size:16px}.step p{font-size:12px;color:#aaa;margin-top:4px}
+.use-grid{display:grid;grid-template-columns:1.05fr 2fr;gap:30px;align-items:center}
+.use-copy p{color:#aaa;max-width:360px;margin-top:12px}
+.uses{display:grid;grid-template-columns:repeat(4,1fr);border-left:1px solid #333}
+.use{padding:10px 18px;border-right:1px solid #333}
+.use-icon{font-size:28px;margin-bottom:12px}.use h3{font-size:15px}.use p{font-size:12px;color:#aaa;margin-top:6px}
+.products{display:grid;grid-template-columns:1fr 1.7fr;gap:35px;align-items:center}
+.product-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.product{border:1px solid #444;border-radius:12px;padding:12px;background:#080808}
+.product img{width:100%;aspect-ratio:1.45/1;object-fit:cover;border-radius:8px;background:#111}
+.product h3{font-size:16px;margin-top:10px}.product p{font-size:12px;color:#9da3ad;margin:3px 0 8px}
+.price{font-size:17px;font-weight:bold}.order{float:right;border:1px solid #aaa;border-radius:20px;padding:7px 13px;font-size:11px}
+.about{display:grid;grid-template-columns:1fr 1.3fr 1fr;gap:35px;align-items:center}
+.about img{width:100%;border-radius:12px;border:1px solid #333;aspect-ratio:1.35/1;object-fit:cover;background:#0a0a0a}
+.about-copy p{color:#aaa;font-size:13px;margin:10px 0 16px}
+.features{border-left:1px solid #333;padding-left:25px}.feature{display:flex;gap:13px;margin:14px 0}.feature-icon{width:30px;text-align:center}.feature h4{font-size:13px}.feature p{font-size:11px;color:#888}
+footer{padding:28px 0 12px}
+.footer-grid{display:grid;grid-template-columns:1fr 1fr 1.4fr 1fr;gap:20px;align-items:center}
+.footer-title{font-size:11px;letter-spacing:2px;color:#aaa;margin-bottom:10px}
+.footer-link{font-size:12px;color:#ddd;display:block;margin:7px 0}
+.socials{display:flex;gap:16px;flex-wrap:wrap}.socials a{font-size:12px;color:#ddd}
+.copyright{text-align:center;border-top:1px solid #292929;margin-top:20px;padding-top:12px;font-size:10px;color:#777}
+@media(max-width:850px){
+  header{height:auto;padding:14px 0;position:relative}
+  nav{display:none}
+  .hero{grid-template-columns:1fr;padding:42px 0}
+  h1{font-size:45px}.visuals{max-width:650px}
+  .steps{grid-template-columns:1fr 1fr}.step:not(:last-child):after{display:none}
+  .use-grid,.products,.about{grid-template-columns:1fr}
+  .uses{border-left:0}.use{border-bottom:1px solid #333}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:520px){
+  .visuals,.product-grid,.uses{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr 1fr}
+  h1{font-size:39px}.brand-name{font-size:21px}
+  .scribble{display:none}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container" style="display:flex;align-items:center;justify-content:space-between;width:92%">
+    <a class="brand" href="#home">
+      <img class="brand-image" src="images/johntapcard.png" alt="Johntapcard logo">
+      <div><div class="brand-name">NFC</div><span class="brand-sub">TAP · CONNECT · GROW</span></div>
+    </a>
+    <nav>
+      <a href="#home">Home</a><a href="#how">How It Works</a><a href="#services">Services</a>
+      <a href="#products">Products</a><a href="#about">About</a><a href="#contact">Contact</a>
+      <a class="contact-btn" href="mailto:johntapcard@gmail.com">✉ Get in Touch</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section id="home" class="container hero">
+  <div>
+    <div class="eyebrow">NFC TAP CARDS</div>
+    <h1>Tap. Connect.<br><span class="gradient">Grow.</span></h1>
+    <p>One tap can open a world of possibilities.</p>
+    <p>Our NFC cards make it easy for people to access your content, connect with your brand, and leave a lasting impression — instantly.</p>
+    <a class="btn" href="#how">See How It Works →</a>
+  </div>
+  <div class="visuals">
+    <!-- Replace these with your separate image files -->
+    <div>
+      <img class="card-image" src="images/googlecard.png" alt="Google Review NFC Card">
+      <div class="image-note"></div>
+    </div>
+    <div>
+      <img class="card-image" src="images/fbcard.png" alt="Facebook NFC Card">
+      <div class="image-note"></div>
+    </div>
+  </div>
+</section>
+
+<section id="how" class="section">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-label">HOW IT WORKS</div>
+      <h2>It’s as Easy as 1-2-3-4</h2>
+      <p>NFC (Near Field Communication) lets your phone read the card’s information instantly — no apps, no typing, no hassle.</p>
+    </div>
+    
+    <div class="steps">
+      <div class="step"><div class="step-icon">TAP</div><div class="num">1</div><h3>TAP</h3><p>Hold your phone near the NFC card.</p></div>
+      <div class="step"><div class="step-icon">DETECT</div><div class="num">2</div><h3>DETECT</h3><p>Your phone reads the NFC tag.</p></div>
+      <div class="step"><div class="step-icon">NOTIFY</div><div class="num">3</div><h3>NOTIFY</h3><p>The link or action is prepared.</p></div>
+      <div class="step"><div class="step-icon">CONNNECT</div><div class="num">4</div><h3>CONNECT</h3><p>You’re redirected to the destination.</p></div>
+    </div>
+    
+  </div>
+</section>
+
+<section id="services" class="section">
+  <div class="container use-grid">
+    <div class="use-copy">
+      <div class="section-label">WHAT YOU CAN USE IT FOR</div>
+      <h2>More Than Just<br>a Business Card.</h2>
+      <p>NFC cards are versatile and useful for businesses, creators, and anyone who wants to make a connection easier.</p>
+    </div>
+    <div class="uses">
+      <div class="use"><div class="use-icon">GOOGLE REVIEWS LOGO</div><h3>Google Reviews</h3><p>Get more reviews and build trust.</p></div>
+      <div class="use"><div class="use-icon">FB LOGO</div><h3>Social Media</h3><p>Connect to Facebook, Instagram, TikTok and more.</p></div>
+      <div class="use"><div class="use-icon">WEBSITE LOGO</div><h3>Websites</h3><p>Send customers to your site, landing page, or online store.</p></div>
+      <div class="use"><div class="use-icon">OTHERS</div><h3>Other Uses</h3><p>Business info, contact details, forms, and more.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="products" class="section">
+  <div class="container products">
+    <div>
+      <div class="section-label">OUR PRODUCTS</div>
+      <h2>Choose the Right Card<br>for Your Needs</h2>
+      <p style="color:#aaa;margin:12px 0 18px">Premium NFC cards designed for businesses, creators, and professionals.</p>
+      <a class="btn" href="mailto:johntapcard@gmail.com?subject=NFC%20Card%20Order">Order / Inquire </a>
+    </div>
+    <div class="product-grid">
+      <article class="product">
+        <img src="images/googlecard.png" alt="Google Review NFC Card">
+        <h3>Google Review Card</h3>
+        <p>Tap directly to your Google review page.</p>
+        <span class="price">₱599 / card</span>
+        <a class="order" href="mailto:johntapcard@gmail.com?subject=Google%20Review%20Card">Order Now →</a>
+      </article>
+      <article class="product">
+        <img src="images/fbcard.png" alt="Social Media NFC Card">
+        <h3>Social Media Card</h3>
+        <p>Connect customers to your social profile.</p>
+        <span class="price">₱599 / card</span>
+        <a class="order" href="mailto:johntapcard@gmail.com?subject=Social%20Media%20Card">Order Now →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="section">
+  <div class="container about">
+    <img src="images/demonstration.png" alt="NFC phone demonstration">
+    <div class="about-copy">
+      <div class="section-label">ABOUT NFC</div>
+      <h2>Simple Technology.<br>Real Impact.</h2>
+      <p>NFC (Near Field Communication) is a wireless technology that lets your phone read information from a card with just a tap. It’s fast, simple, and works on most modern smartphones.</p>
+      <a class="btn" href="#how">Learn More →</a>
+    </div>
+    <div class="features">
+      <div class="feature"><div class="feature-icon">FAST</div><div><h4>Fast</h4><p>Instant access.</p></div></div>
+      <div class="feature"><div class="feature-icon">SECURE</div><div><h4>Secure</h4><p>No sensitive data shared.</p></div></div>
+      <div class="feature"><div class="feature-icon">Works</div><div><h4>Works Offline</h4><p>No internet is needed for the NFC tap itself.</p></div></div>
+      <div class="feature"><div class="feature-icon">Universal</div><div><h4>Universal</h4><p>Works with most smartphones.</p></div></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer id="contact">
+  <div class="container footer-grid">
+    <div class="brand">
+      <img class="brand-image" src="images/johntapcard.png" alt="Johntapcard logo">
+      <div><div class="brand-name">NFC</div><span class="brand-sub">TAP · CONNECT · GROW</span></div>
+    </div>
+    <div>
+      <div class="footer-title">GET IN TOUCH</div>
+      <a class="footer-link" href="mailto:johntapcard@gmail.com">✉ johntapcard@gmail.com</a>
+    </div>
+    <div>
+      <div class="footer-title">FOLLOW US</div>
+      <div class="socials">
+        <a href="https://www.facebook.com/profile.php?id=61594294572667" target="_blank"> Facebook</a>
+        <a href="https://www.tiktok.com/@johntapcard" target="_blank"> TikTok</a>
+        <a href="https://www.instagram.com/johntapcard" target="_blank"> Instagram</a>
+      </div>
+    </div>
+    <div class="scribble">Tap Today.<br>Grow Tomorrow.</div>
+  </div>
+  <div class="container copyright">© 2026 Johntapcard. All rights reserved.</div>
+</footer>
+
+</body>
+</html>
