@@ -1,0 +1,2280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Johntapcard</title>
+
+  <link rel="icon" type="image/png" href="images/lugo.png">
+
+  <style>
+    /* =========================
+       RESET
+    ========================= */
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #000;
+      color: #f5f5f5;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.45;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(92%, 1180px);
+      margin: auto;
+    }
+
+    /* =========================
+       HEADER / NAVBAR
+    ========================= */
+
+    header,
+    .navbar {
+      height: 78px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #222;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(5, 5, 5, 0.94);
+      backdrop-filter: blur(12px);
+    }
+
+    .navbar {
+      padding: 0 4%;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-image {
+      width: 58px;
+      height: 42px;
+      object-fit: cover;
+    }
+
+    .brand-name {
+      font-size: 25px;
+      font-weight: 700;
+      letter-spacing: 4px;
+    }
+
+    .brand-sub {
+      display: block;
+      font-size: 8px;
+      letter-spacing: 2px;
+      color: #aaa;
+      margin-top: 2px;
+    }
+
+    /* =========================
+       NAV LINKS
+    ========================= */
+
+    nav {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 34px;
+      font-size: 13px;
+    }
+
+    .nav-links {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 35px;
+    }
+
+    .nav-links a {
+      color: #d0d0d0;
+      text-decoration: none;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover,
+    nav a:hover {
+      color: #aaa;
+    }
+
+    /* =========================
+       CONTACT BUTTON
+    ========================= */
+
+    .contact-btn {
+      border: 1px solid #eee;
+      border-radius: 30px;
+      padding: 10px 17px;
+    }
+
+    .nav-links .contact-btn {
+      margin-left: 35px;
+      padding: 10px 20px;
+      color: #fff;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    .contact-btn:hover {
+      background: #fff;
+      color: #000;
+    }
+
+    /* =========================
+       MOBILE MENU
+    ========================= */
+
+    .menu-toggle,
+    .menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      min-height: 500px;
+      display: grid;
+      grid-template-columns: 1fr 1.25fr;
+      gap: 45px;
+      align-items: center;
+      padding: 60px 0;
+      border-bottom: 1px solid #292929;
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: 3px;
+      color: #cbd0dc;
+      margin-bottom: 7px;
+    }
+
+    h1 {
+      font-size: 54px;
+      line-height: 1.02;
+      letter-spacing: -2px;
+    }
+
+    .gradient {
+      background: linear-gradient(90deg, #fff, #a9a9a9);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      color: #c6c6c6;
+      margin: 15px 0 24px;
+      max-width: 500px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid #eee;
+      border-radius: 28px;
+      padding: 12px 20px;
+      font-size: 13px;
+    }
+
+    /* =========================
+       CARD DEMONSTRATION
+    ========================= */
+
+    .visuals {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border: 1px solid #777;
+      border-radius: 14px;
+      overflow: hidden;
+      align-items: center;
+      background: #0b0b0b;
+    }
+
+    .visuals > div {
+      min-width: 0;
+      padding: 15px;
+      margin: 0;
+    }
+
+    .visuals > div:first-child {
+      border-right: 1px solid #777;
+    }
+
+    .card-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      border: none;
+      border-radius: 0;
+      background: transparent;
+    }
+
+    .image-note {
+      font-size: 10px;
+      color: #777;
+      margin-top: 7px;
+      text-align: center;
+    }
+
+    /* =========================
+       GENERAL SECTIONS
+    ========================= */
+
+    .section {
+      padding: 42px 0;
+      border-bottom: 1px solid #292929;
+    }
+
+    .section-head {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      color: #bfc3c8;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      margin-bottom: 25px;
+    }
+
+    .section-head .section-label {
+      justify-content: center;
+    }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: #bfc5d0;
+    }
+
+    h2 {
+      font-size: 31px;
+      margin: 5px 0;
+    }
+
+    .section-head p {
+      color: #aaa;
+      font-size: 14px;
+    }
+
+    /* =========================
+       STEPS
+    ========================= */
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      text-align: center;
+    }
+
+    .step {
+      position: relative;
+    }
+
+    .step:not(:last-child)::after {
+      content: "→";
+      position: absolute;
+      right: -15px;
+      top: 30px;
+      font-size: 25px;
+      color: #aaa;
+    }
+
+    .step-icon {
+      width: 80px;
+      height: 80px;
+      border: 1px solid #777;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .step-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .num {
+      display: inline-grid;
+      place-items: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #ddd;
+      color: #111;
+      font-size: 12px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .step h3 {
+      font-size: 16px;
+    }
+
+    .step p {
+      font-size: 12px;
+      color: #aaa;
+      margin-top: 4px;
+    }
+
+    /* =========================
+       SERVICES
+    ========================= */
+
+    .use-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 2fr;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .use-copy p {
+      color: #aaa;
+      max-width: 360px;
+      margin-top: 12px;
+    }
+
+    .uses {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-left: 1px solid #333;
+    }
+
+    .use {
+      padding: 10px 18px;
+      border-right: 1px solid #333;
+    }
+
+    .use-icon {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    .use h3 {
+      font-size: 15px;
+    }
+
+    .use p {
+      font-size: 12px;
+      color: #aaa;
+      margin-top: 6px;
+    }
+
+    /* =========================
+       PRODUCTS
+    ========================= */
+
+    .products {
+      display: grid;
+      grid-template-columns: 1fr 1.7fr;
+      gap: 35px;
+      align-items: center;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .product {
+      border: 1px solid #444;
+      border-radius: 12px;
+      padding: 12px;
+      background: #080808;
+    }
+
+    .product img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      border-radius: 8px;
+      background: #111;
+    }
+
+    
+
+    .product h3 {
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    .product p {
+      font-size: 12px;
+      color: #9da3ad;
+      margin: 3px 0 8px;
+    }
+
+    .price {
+      font-size: 17px;
+      font-weight: bold;
+    }
+
+    .order {
+      float: right;
+      border: 1px solid #aaa;
+      border-radius: 20px;
+      padding: 7px 13px;
+      font-size: 11px;
+    }
+
+    .product-image {
+      width: 100%;
+      max-width: 900px;
+      height: 250px;
+      object-fit: cover;
+      border: 1px solid #444;
+      border-radius: 16px;
+      display: block;
+    }
+
+
+    .product-vid {
+      width: 100%;
+      max-width: 900px;
+      height: 250px;
+      object-fit: fill;
+      border: 1px solid #444;
+      border-radius: 16px;
+      display: block;
+    }
+
+    /* =========================
+       ABOUT
+    ========================= */
+
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr 1fr;
+      gap: 35px;
+      align-items: center;
+    }
+
+    .about img {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid #333;
+      aspect-ratio: 1.35 / 1;
+      object-fit: fill;
+      background: #0a0a0a;
+    }
+
+    .about-copy p {
+      color: #aaa;
+      font-size: 13px;
+      margin: 10px 0 16px;
+    }
+
+    .features {
+      border-left: 1px solid #333;
+      padding-left: 25px;
+    }
+
+    .feature {
+      display: flex;
+      gap: 13px;
+      margin: 14px 0;
+    }
+
+    .feature-icon {
+      width: 30px;
+      text-align: center;
+    }
+
+    .feature h4 {
+      font-size: 13px;
+    }
+
+    .feature p {
+      font-size: 11px;
+      color: #888;
+    }
+
+    /* =========================
+       HOW IT HELPS
+    ========================= */
+
+    .how-helps {
+      width: 92%;
+      max-width: 1200px;
+      margin: auto;
+      padding: 70px 0 80px;
+    }
+
+    .intro {
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .intro h1 {
+      font-size: clamp(42px, 5vw, 65px);
+      line-height: 1.05;
+      letter-spacing: -2px;
+      max-width: 650px;
+      margin-bottom: 28px;
+      color: #f5f5f5;
+    }
+
+    .intro h1 strong {
+      color: #fff;
+    }
+
+    .intro p {
+      color: #b8b8b8;
+      font-size: 17px;
+      line-height: 1.65;
+      max-width: 590px;
+    }
+
+    /* =========================
+       COMPARISON
+    ========================= */
+
+    .comparison {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .business-card {
+      width: 230px;
+      min-height: 210px;
+      padding: 27px 20px;
+      border: 1px solid #383838;
+      border-radius: 15px;
+      background: #080808;
+      text-align: center;
+    }
+
+    .business-card.featured {
+      border-color: #777;
+    }
+
+    .business-card h3 {
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: #f5f5f5;
+    }
+
+    .business-card p {
+      font-size: 16px;
+      color: #999;
+      margin: 8px 0;
+    }
+
+    /* =========================
+       RATING
+    ========================= */
+
+    .rating {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .rating .star {
+      color: #fff;
+      font-size: 40px;
+    }
+
+    .rating strong {
+      font-size: 42px;
+      color: #fff;
+    }
+
+    .stars {
+      color: #fff;
+      font-size: 19px;
+      letter-spacing: 2px;
+      margin-top: 14px;
+    }
+
+    .empty-star {
+      color: #555;
+    }
+
+    .vs {
+      color: #aaa;
+      font-size: 15px;
+    }
+
+    /* =========================
+       BENEFITS
+    ========================= */
+
+    .benefits {
+      margin-top: 55px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .benefit-card {
+      min-height: 185px;
+      padding: 30px;
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      border: 1px solid #292929;
+      border-radius: 15px;
+      background: #080808;
+      transition: 0.3s;
+    }
+
+    .benefit-card:hover {
+      border-color: #555;
+      transform: translateY(-3px);
+    }
+
+    .icon {
+      min-width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      color: #fff;
+      background: #111;
+      border: 1px solid #333;
+    }
+
+    .benefit-card h3 {
+      font-size: 25px;
+      margin-bottom: 12px;
+      color: #f5f5f5;
+    }
+
+    .benefit-card p {
+      color: #aaa;
+      line-height: 1.55;
+      font-size: 16px;
+    }
+
+    /* =========================
+       REVIEW BANNER
+    ========================= */
+
+    .review-banner {
+      margin-top: 40px;
+      min-height: 300px;
+      border: 1px solid #444;
+      border-radius: 15px;
+      overflow: hidden;
+      background: #080808;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+    }
+
+    .review-content {
+      display: flex;
+      align-items: flex-start;
+      gap: 28px;
+      padding: 40px;
+    }
+
+    .phone-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      border: 1px solid #555;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 30px;
+      flex-shrink: 0;
+      background: #111;
+      overflow: hidden;
+    }
+
+    .phone-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .review-text h2 {
+      font-size: 34px;
+      margin-bottom: 14px;
+      color: #f5f5f5;
+    }
+
+    .review-text p {
+      color: #aaa;
+      line-height: 1.6;
+      max-width: 470px;
+      font-size: 16px;
+    }
+
+    .review-features {
+      display: flex;
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    .review-features span {
+      color: #ddd;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .review-image {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .review-image img {
+      width: 100%;
+      max-width: 560px;
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 20px 35px rgba(0, 0, 0, 0.6));
+    }
+
+    /* =========================
+       SOCIAL ICONS
+    ========================= */
+
+    .socials {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .socials a {
+      width: 44px;
+      height: 44px;
+      border: 1px solid #777;
+      border-radius: 50%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+    }
+
+    .socials img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      padding: 40px 0 15px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1.2fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .footer-title {
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: #aaa;
+      margin-bottom: 14px;
+    }
+
+    .copyright {
+      text-align: center;
+      border-top: 1px solid #292929;
+      margin-top: 35px;
+      padding-top: 12px;
+      font-size: 10px;
+      color: #777;
+    }
+
+    /* =========================
+       TABLET
+    ========================= */
+
+    @media (max-width: 950px) {
+
+      .nav-links {
+        gap: 18px;
+      }
+
+      .contact-btn {
+        margin-left: 18px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 42px 0;
+      }
+
+      h1 {
+        font-size: 45px;
+      }
+
+      .intro {
+        grid-template-columns: 1fr;
+      }
+
+      .intro-text {
+        text-align: center;
+      }
+
+      .section-label {
+        justify-content: center;
+      }
+
+      .intro h1,
+      .intro p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .comparison {
+        margin-top: 20px;
+      }
+
+      .review-banner {
+        grid-template-columns: 1fr;
+      }
+
+      .review-image {
+        min-height: 250px;
+      }
+
+      .use-grid,
+      .products,
+      .about {
+        grid-template-columns: 1fr;
+      }
+
+      .uses {
+        border-left: 0;
+      }
+
+      .use {
+        border-bottom: 1px solid #333;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .copyright {
+        margin-top: 25px;
+      }
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 700px) {
+
+      header,
+      .navbar {
+        height: auto;
+        padding-top: 14px;
+        padding-bottom: 14px;
+        position: relative;
+      }
+
+      nav {
+        position: relative;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+      }
+
+      .menu-toggle,
+      .menu-btn {
+        display: block;
+        line-height: 1;
+        padding: 0;
+        margin-left: auto;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 38px;
+        right: 0;
+        width: max-content;
+        min-width: 0;
+        flex-direction: column;
+        gap: 0;
+        padding: 4px 0;
+        margin: 0;
+        background: #0b0b0b;
+        border: 1px solid #444;
+        border-radius: 8px;
+        z-index: 1000;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-links a {
+        display: block;
+        padding: 7px 12px;
+        margin: 0;
+        font-size: 13px;
+        line-height: 1.1;
+      }
+
+      .nav-links .contact-btn {
+        margin: 0;
+        padding: 7px 12px;
+        text-align: left;
+        border: none;
+        border-radius: 0;
+        background: none;
+      }
+
+      .visuals {
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+      }
+
+      .visuals > div {
+        padding: 8px;
+      }
+
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .uses {
+        grid-template-columns: 1fr;
+      }
+
+      .steps {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .step:not(:last-child)::after {
+        display: none;
+      }
+
+      h1 {
+        font-size: 39px;
+      }
+
+      .brand-name {
+        font-size: 21px;
+      }
+
+      .comparison {
+        gap: 8px;
+      }
+
+      .business-card {
+        width: 47%;
+        min-height: 175px;
+        padding: 20px 10px;
+      }
+
+      .business-card h3 {
+        font-size: 17px;
+      }
+
+      .rating .star {
+        font-size: 28px;
+      }
+
+      .rating strong {
+        font-size: 32px;
+      }
+
+      .business-card p {
+        font-size: 13px;
+      }
+
+      .stars {
+        font-size: 14px;
+      }
+
+      .benefits {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+
+      .benefit-card {
+        min-height: auto;
+        padding: 25px;
+        align-items: flex-start;
+      }
+
+      .icon {
+        min-width: 55px;
+        height: 55px;
+        font-size: 25px;
+      }
+
+      .benefit-card h3 {
+        font-size: 21px;
+      }
+
+      .benefit-card p {
+        font-size: 14px;
+      }
+
+      .review-content {
+        padding: 28px 22px;
+        flex-direction: column;
+      }
+
+      .review-text h2 {
+        font-size: 28px;
+      }
+
+      .review-text p {
+        font-size: 14px;
+      }
+
+      .review-features {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .review-image {
+        padding: 10px 20px 25px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ================= HEADER ================= -->
+
+  <header>
+    <div class="container header-inner">
+
+      <div class="brand">
+
+        <img
+          class="brand-image"
+          src="images/johntapcard.png"
+          alt="Johntapcard logo"
+        >
+
+        <div>
+          <div class="brand-name">NFC</div>
+
+          <span class="brand-sub">
+            TAP · CONNECT · GROW
+          </span>
+        </div>
+
+      </div>
+
+      <nav>
+
+        <button
+          class="menu-toggle"
+          onclick="toggleMenu()"
+          aria-label="Open menu"
+        >
+          ☰
+        </button>
+
+        <div class="nav-links" id="mobileMenu">
+
+          <a href="#home">Home</a>
+
+          <a href="#how-it-helps">
+            How It Helps
+          </a>
+
+          <a href="#how">
+            How It Works
+          </a>
+
+          <a href="#services">
+            Services
+          </a>
+
+          <a href="#products">
+            Products
+          </a>
+
+          <a href="#about">
+            About
+          </a>
+
+          <a href="#contact">
+            Contact
+          </a>
+
+          <a
+            class="contact-btn"
+            href="mailto:johntapcard@gmail.com"
+          >
+            Get in Touch
+          </a>
+
+        </div>
+
+      </nav>
+
+    </div>
+  </header>
+
+
+  <!-- ================= MAIN ================= -->
+
+  <main>
+
+    <!-- ================= HOME ================= -->
+
+    <section id="home" class="container hero">
+
+      <div>
+
+        <div class="eyebrow">
+          <h2>NFC TAP CARD</h2>
+        </div>
+
+        <h1>
+          Tap. Connect.<br>
+          <span class="gradient">Grow.</span>
+        </h1>
+
+        <p>
+          One tap can open a world of possibilities.
+        </p>
+
+        <p>
+          Our NFC cards make it easy for people to access your content,
+          connect with your brand, and leave a lasting impression — instantly.
+        </p>
+
+        <a class="btn" href="#how">
+          See How It Works 👇
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= HOW IT HELPS ================= -->
+
+    <section
+      class="how-helps"
+      id="how-it-helps"
+    >
+
+      <div class="intro">
+
+        <div class="intro-text">
+
+          <div class="section-label">
+            <span></span>
+            <h2>HOW IT HELPS</h2>
+          </div>
+
+          <h2>
+            Turn customer experiences
+            into <strong>stronger trust</strong>
+          </h2>
+
+          <p>
+            Even with similar ratings, customers may feel more
+            confident choosing a business with more reviews
+            because there is more customer feedback to consider.
+          </p>
+
+        </div>
+
+        <div class="comparison">
+
+          <div class="business-card featured">
+
+            <h3>
+              Business A
+            </h3>
+
+            <div class="rating">
+
+              <span class="star">
+                ★
+              </span>
+
+              <strong>
+                4.8
+              </strong>
+
+            </div>
+
+            <p>
+              127 reviews
+            </p>
+
+            <div class="stars">
+              ★ ★ ★ ★ ★
+            </div>
+
+          </div>
+
+          <div class="vs">
+            VS
+          </div>
+
+          <div class="business-card">
+
+            <h3>
+              Business B
+            </h3>
+
+            <div class="rating">
+
+              <span class="star">
+                ★
+              </span>
+
+              <strong>
+                4.7
+              </strong>
+
+            </div>
+
+            <p>
+              38 reviews
+            </p>
+
+            <div class="stars">
+              ★ ★ ★ ★
+              <span class="empty-star">★</span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- REVIEW BANNER -->
+
+      <div class="review-banner">
+
+        <div class="review-content">
+
+          <div class="phone-icon">
+
+            <img
+              src="images/johntapcard.png"
+              alt="NFC phone"
+            >
+
+          </div>
+
+          <div class="review-text">
+
+            <h2>
+              Make Reviews Easier
+            </h2>
+
+            <p>
+              An NFC Google Review Card gives customers
+              a simple way to reach your Google review page
+              with just a tap.
+            </p>
+
+            <div class="review-features">
+
+              <span>
+                • NO SEARCHING
+              </span>
+
+              <span>
+                • NO HASSLE
+              </span>
+
+              <span>
+                • JUST A TAP
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="review-vid">
+
+          <image
+            id="myVideo"
+            class="product-vid"
+            src="images/demonstration.png"
+            muted
+            loop
+            playsinline
+            preload="auto"
+          ></image>
+
+        </div>
+
+      </div>
+
+
+      <!-- BENEFITS -->
+
+      <div class="benefits">
+
+        <div class="benefit-card">
+
+          <div class="icon">
+            1
+          </div>
+
+          <div>
+
+            <h3>
+              Build Trust
+            </h3>
+
+            <p>
+              Reviews help potential customers see what other people
+              experienced with your business.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="benefit-card">
+
+          <div class="icon">
+            2
+          </div>
+
+          <div>
+
+            <h3>
+              Make Reviews Easier
+            </h3>
+
+            <p>
+              Customers can tap the card and go directly to your
+              Google review page without searching.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="benefit-card">
+
+          <div class="icon">
+            3
+          </div>
+
+          <div>
+
+            <h3>
+              Better First Impression
+            </h3>
+
+            <p>
+              Give customers a simple and modern way to connect
+              with your business.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="benefit-card">
+
+          <div class="icon">
+            4
+          </div>
+
+          <div>
+
+            <h3>
+              Stay Connected
+            </h3>
+
+            <p>
+              Use NFC to connect customers with your reviews,
+              social media, website, or other business links.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= CARD DEMONSTRATION ================= -->
+
+    <section class="visuals">
+
+      <div>
+
+        <img
+          class="card-image"
+          src="images/googlecard.png"
+          alt="Google Review NFC Card"
+        >
+
+      </div>
+
+      <div>
+
+        <img
+          class="card-image"
+          src="images/fbcard.png"
+          alt="Facebook NFC Card"
+        >
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= HOW IT WORKS ================= -->
+
+    <section id="how" class="section">
+
+      <div class="container">
+
+        <div class="section-head">
+
+          <div class="section-label">
+            <h2>HOW IT WORKS</h2>
+          </div>
+
+          <h2>
+            It’s as Easy as 1-2-3-4
+          </h2>
+
+          <p>
+            NFC (Near Field Communication) lets your phone read
+            the card’s information instantly — no apps, no typing,
+            no hassle.
+          </p>
+
+        </div>
+
+
+        <div class="steps">
+
+          <div class="step">
+
+            <div class="step-icon">
+
+              <img
+                src="images/tap.png"
+                alt="Tap"
+              >
+
+            </div>
+
+            <div class="num">
+              1
+            </div>
+
+            <h3>
+              Tap
+            </h3>
+
+            <p>
+              Hold your phone near the NFC card.
+            </p>
+
+          </div>
+
+
+          <div class="step">
+
+            <div class="step-icon">
+
+              <img
+                src="images/detected.png"
+                alt="Detect"
+              >
+
+            </div>
+
+            <div class="num">
+              2
+            </div>
+
+            <h3>
+              Detect
+            </h3>
+
+            <p>
+              Your phone reads the NFC tag.
+            </p>
+
+          </div>
+
+
+          <div class="step">
+
+            <div class="step-icon">
+
+              <img
+                src="images/notify.png"
+                alt="Notify"
+              >
+
+            </div>
+
+            <div class="num">
+              3
+            </div>
+
+            <h3>
+              Notify
+            </h3>
+
+            <p>
+              The link or action is prepared.
+            </p>
+
+          </div>
+
+
+          <div class="step">
+
+            <div class="step-icon">
+
+              <img
+                src="images/connect.png"
+                alt="Connect"
+              >
+
+            </div>
+
+            <div class="num">
+              4
+            </div>
+
+            <h3>
+              Connect
+            </h3>
+
+            <p>
+              You’re redirected to the destination.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= SERVICES ================= -->
+
+    <section id="services" class="section">
+
+      <div class="container use-grid">
+
+        <div class="use-copy">
+
+          <div class="section-label">
+            <h2>WHAT YOU CAN USE IT FOR</h2>
+          </div>
+
+          <h2>
+            More Than Just a Business Card.
+          </h2>
+
+          <p>
+            NFC cards are versatile and useful for businesses,
+            creators, and anyone who wants to make a connection easier.
+          </p>
+
+        </div>
+
+
+        <div class="uses">
+
+          <div class="use">
+
+            <h3>
+              Google Reviews
+            </h3>
+
+            <p>
+              Get more reviews and build trust.
+            </p>
+
+          </div>
+
+
+          <div class="use">
+
+            <h3>
+              Social Media
+            </h3>
+
+            <p>
+              Connect to Facebook, Instagram, TikTok and more.
+            </p>
+
+          </div>
+
+
+          <div class="use">
+
+            <h3>
+              Websites
+            </h3>
+
+            <p>
+              Send customers to your site, landing page,
+              or online store.
+            </p>
+
+          </div>
+
+
+          <div class="use">
+
+            <h3>
+              Other Uses
+            </h3>
+
+            <p>
+              Business info, contact details, forms, and more.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= PRODUCTS ================= -->
+
+    <section id="products" class="section">
+
+      <div class="container products">
+
+        <div>
+
+          <div class="section-label">
+            <h2>OUR PRODUCTS</h2>
+          </div>
+
+          <h2>
+            Choose the Right Card<br>
+            for Your Needs
+          </h2>
+
+          <p class="product-intro">
+            Premium NFC cards designed for businesses,
+            creators, and professionals.
+          </p>
+
+          <br>
+
+          <a
+            class="btn"
+            href="mailto:johntapcard@gmail.com?subject=NFC%20Card%20Order"
+          >
+            GET NOW👇
+          </a>
+
+        </div>
+
+
+        <div class="product-grid">
+
+          <article class="product">
+
+            <img
+              src="images/try.png"
+              alt="Google Review NFC Card"
+            >
+
+            <h3>
+              Google Review Card
+            </h3>
+
+            <p>
+              Tap directly to your Google review page.
+            </p>
+
+            <span class="price">
+              <del>₱899</del>
+              NOW ₱800
+            </span>
+
+            <a
+              class="order"
+              href="mailto:johntapcard@gmail.com?subject=Google%20Review%20Card"
+            >
+              GET YOURS TODAY👇
+            </a>
+
+          </article>
+
+
+          <article class="product">
+
+            <img
+              src="images/fbcard.png"
+              alt="Social Media NFC Card"
+            >
+
+            <h3>
+              Social Media Card
+            </h3>
+
+            <p>
+              Connect customers to your social profile.
+            </p>
+
+            <span class="price">
+              <del>₱899</del>
+              NOW ₱800
+            </span>
+
+            <a
+              class="order"
+              href="mailto:johntapcard@gmail.com?subject=Social%20Media%20Card"
+            >
+              GET YOURS TODAY👇
+            </a>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= ABOUT ================= -->
+
+    <section id="about" class="section">
+
+      <div class="container about">
+
+        <img
+          src="images/demonstration.png"
+          alt="NFC phone demonstration"
+        >
+
+        <div class="about-copy">
+
+          <div class="section-label">
+            <h2>ABOUT NFC</h2>
+          </div>
+
+          <h2 style="text-align: center;">
+            Simple Technology,<br>
+            Real Impact.
+          </h2>
+
+          <p>
+            NFC (Near Field Communication) is a wireless technology
+            that lets your phone read information from a card with
+            just a tap. It’s fast, simple, and works on most modern
+            smartphones.
+          </p>
+
+          <a class="btn" href="#how">
+            Learn More 👆
+          </a>
+
+        </div>
+
+
+        <div class="features">
+
+          <div class="feature">
+
+            <div class="feature-icon">
+              ✓
+            </div>
+
+            <div>
+
+              <h4>
+                FAST
+              </h4>
+
+              <p>
+                Instant access.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div class="feature">
+
+            <div class="feature-icon">
+              ✓
+            </div>
+
+            <div>
+
+              <h4>
+                Secure
+              </h4>
+
+              <p>
+                No sensitive data shared.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div class="feature">
+
+            <div class="feature-icon">
+              ✓
+            </div>
+
+            <div>
+
+              <h4>
+                Works Offline
+              </h4>
+
+              <p>
+                No internet is needed for the NFC tap itself.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div class="feature">
+
+            <div class="feature-icon">
+              ✓
+            </div>
+
+            <div>
+
+              <h4>
+                Universal
+              </h4>
+
+              <p>
+                Works with most smartphones.
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- ================= FOOTER ================= -->
+
+<footer id="contact" style="
+  background:#000;
+  color:#fff;
+  padding:50px 20px 20px;
+  font-family:Arial,sans-serif;
+">
+
+  <div style="
+    max-width:500px;
+    margin:0 auto;
+  ">
+
+    <!-- =========================
+         BRAND
+    ========================== -->
+
+    <div style="
+      text-align:center;
+      margin-bottom:45px;
+    ">
+
+      <div style="
+        font-size:26px;
+        font-weight:800;
+        letter-spacing:2px;
+      ">
+        NFC
+      </div>
+
+      <div style="
+        font-size:11px;
+        letter-spacing:2px;
+        opacity:.7;
+        margin-top:5px;
+      ">
+        TAP · CONNECT · GROW
+      </div>
+
+    </div>
+
+
+    <!-- =========================
+         GET IN TOUCH
+    ========================== -->
+
+    <div style="
+      text-align:center;
+      margin-bottom:45px;
+    ">
+
+      <h3 style="
+        margin:0 0 20px;
+        font-size:15px;
+        letter-spacing:2px;
+      ">
+        GET IN TOUCH
+      </h3>
+
+
+      <!-- MESSAGE US -->
+
+      <a
+        href="https://m.me/61594294572667"
+        target="_blank"
+        rel="noopener noreferrer"
+        onclick="
+          navigator.clipboard.writeText(
+            `Hi! I'm interested in your NFC cards. Can I get more details about them?`
+          );
+        "
+        style="
+          display:block;
+          width:100%;
+          box-sizing:border-box;
+          border:2px solid #fff;
+          padding:14px 18px;
+          border-radius:30px;
+          text-decoration:none;
+          color:#fff;
+          margin-bottom:12px;
+        "
+      >
+        <strong>MESSAGE US</strong>
+      </a>
+
+
+      <!-- GOOGLE REVIEW -->
+
+      <a
+        href="https://g.page/r/CYl3YkKS2k4TECE/review"
+        target="_blank"
+        rel="noopener noreferrer"
+        style="
+          display:block;
+          width:100%;
+          box-sizing:border-box;
+          border:2px solid #fff;
+          padding:14px 18px;
+          border-radius:30px;
+          text-decoration:none;
+          color:#fff;
+        "
+      >
+        <strong>⭐ LEAVE US A GOOGLE REVIEW</strong>
+      </a>
+
+    </div>
+
+
+    <!-- =========================
+         FOLLOW US
+    ========================== -->
+
+    <div style="
+      text-align:center;
+      margin-bottom:45px;
+    ">
+
+      <h3 style="
+        margin:0 0 20px;
+        font-size:15px;
+        letter-spacing:2px;
+      ">
+        FOLLOW US
+      </h3>
+
+
+      <div style="
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        gap:20px;
+      ">
+
+<!-- FACEBOOK -->
+
+<a
+  href="https://www.facebook.com/profile.php?id=61594294572667"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Facebook"
+  style="
+    width:50px;
+    height:50px;
+    border:2px solid #fff;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-sizing:border-box;
+    overflow:hidden;11
+  "
+>
+  <img
+    src="images/fb.png"
+    alt="Facebook"
+    style="
+      width:50px;
+      height:50px;
+      object-fit:contain;
+      display:block;
+    "
+  >
+</a>
+
+</a>
+
+
+<!-- TIKTOK -->
+
+<a
+  href="https://www.tiktok.com/@johntapcard"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="TikTok"
+  style="
+    width:50px;
+    height:50px;
+    border:2px solid #fff;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-sizing:border-box;
+    overflow:hidden;
+  "
+>
+
+  <img
+    src="images/tiktok.png"
+    alt="TikTok"
+    style="
+      width:50px;
+      height:50px;
+      object-fit:contain;
+      display:block;
+    "
+  >
+
+</a>
+
+
+<!-- INSTAGRAM -->
+
+<a
+  href="https://www.instagram.com/johntapcard"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Instagram"
+  style="
+    width:50px;
+    height:50px;
+    border:2px solid #fff;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-sizing:border-box;
+    overflow:hidden;
+  "
+>
+
+  <img
+    src="images/ig.png"
+    alt="Instagram"
+    style="
+      width:50px;
+      height:50px;
+      object-fit:contain;
+      display:block;
+    "
+  >
+
+</a>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     COPYRIGHT
+========================== -->
+
+<div style="
+  border-top:1px solid rgba(255,255,255,.2);
+  padding-top:20px;
+  text-align:center;
+  font-size:11px;
+  opacity:.6;
+">
+  © 2026 Johntapcard. All rights reserved.
+</div>
+
+</div>
+
+</footer>
+  
+  <!-- ================= JAVASCRIPT ================= -->
+
+  <script>
+
+    /* MOBILE MENU */
+
+    function toggleMenu() {
+      const menu = document.getElementById("mobileMenu");
+      menu.classList.toggle("active");
+    }
+
+
+    /* CLOSE MOBILE MENU AFTER CLICKING A LINK */
+
+    document.querySelectorAll("#mobileMenu a").forEach(link => {
+
+      link.addEventListener("click", () => {
+
+        document
+          .getElementById("mobileMenu")
+          .classList.remove("active");
+
+      });
+
+    });
+
+
+    /* VIDEO AUTOPLAY WHEN VISIBLE */
+
+    const video = document.getElementById("myVideo");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+
+        entries.forEach((entry) => {
+
+          if (entry.isIntersecting) {
+            video.play().catch(() => {});
+          } else {
+            video.pause();
+          }
+
+        });
+
+      },
+      {
+        threshold: 0.5
+      }
+    );
+
+    observer.observe(video);
+
+  </script>
+
+</body>
+
+</html>
